@@ -3,20 +3,16 @@
     src: url();
     font-display: swap;
 }
-
-
 @font-face {
     font-family: "b";
-    src: url(../fonts/Ubuntu-Regular.ttf);
+    src: url(../fonts/pacifico.woff2) format('woff2');
     font-display: swap;
 }
-
 @font-face {
     font-family: "title";
     src: url(../fonts/pacifico.woff2) format('woff2');
     font-display: swap;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +20,6 @@
     user-select: none;
     transition: background-color 0.2s ease;
 }
-
 a:hover,
 a:link,
 a:visited,
@@ -36,7 +31,6 @@ a:focus {
     color: inherit;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 ::-webkit-scrollbar {
     width: 0px;
 }
@@ -51,8 +45,7 @@ a:focus {
     background-color: var(--main_bg_color, linear-gradient(50deg, #a2d0ff, #ffffff));
 }
 
-html[data-theme="Dark"] {
-    
+html[data-theme="Dark"] {   
     --main_text_color: #fff;
     --gradient:linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
     --purple_text_color: #747bff;
@@ -79,17 +72,15 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     transition: color 0.1s ease;
     color: var(--main_text_color);
 
 }
-
 #lyi-loading {
     background: radial-gradient(white, #d8eaff);
     background-size: 100%;
     background-position: center;
-
     height: 100%;
     width: 100%;
     position: fixed;
@@ -102,9 +93,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
-
 #lyi-loading-center {
     height: 150px;
     width: 150px;
@@ -114,7 +102,6 @@ body {
 
     animation: zoom 1s linear infinite;
 }
-
 @keyframes zoom {
     0% {
         transform: scale(0);
@@ -130,10 +117,6 @@ body {
         opacity: 0;
     }
 }
-
-
-
-
 .lyi-filter {
     position: fixed;
     width: 100%;
@@ -141,10 +124,8 @@ body {
     background: var(--back_filter_color);
     backdrop-filter:  blur(var(--back_filter));
     -webkit-backdrop-filter: blur(var(--back_filter));
-    z-index: -99999999;
-   
+    z-index: -999;
 }
-
 .lyi-main {
     width: 100%;
     margin: 0 auto;
@@ -154,8 +135,6 @@ body {
     display: flex;
     flex-direction: row;
 }
-
-
 .lyi-left {
     overflow-y: scroll;
     width: 230px;
@@ -169,11 +148,9 @@ body {
     flex-direction: column;
 }
 
-
 .lyi-left::-webkit-scrollbar {
     display: none;
 }
-
 
 .logo {
     flex-shrink: 0;
@@ -184,9 +161,6 @@ body {
     background-size: cover;
     border-radius: 50%;
 }
-
-
-
 .left-div {
     flex-shrink: 0;
     width: 100%;
@@ -257,9 +231,6 @@ body {
     scroll-snap-align: end;
     color: var(--main_text_color);
 }
-
-
-
 .focus {
     width: 8px;
     height: 8px;
@@ -270,18 +241,13 @@ body {
     left: -5px;
     top: 50%;
 }
-
 #line li:first-child .focus:first-child {
     background-color: #aaffcd;
     animation: focus 1.8s ease infinite;
 }
-
 #line::-webkit-scrollbar {
     display: none;
 }
-
-
-
 .lyi-right {
     width: calc(100% - 230px);
     display: flex;
@@ -291,12 +257,11 @@ body {
     flex-direction: column;
 }
 .welcome {
-
     font-size: 65px;
     font-weight: 800;
     margin: 20px 0;
+    font-family: "title";
 }
-
 .index-logo {
     flex-shrink: 0;
     width: 40%;
@@ -309,22 +274,14 @@ body {
     border: 0.5px solid #ffffff;
 }
 .description {
-
     font-size: 20px;
-    margin-top: 7px;
+    margin-top: 12px;
 }
-
-
-
 .gradientText {
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200%;
-    background-position: 0%;
+    font-size: 70px;
     font-family: "title";
-    animation: backgroundSizeAnimation 10s ease-in-out infinite;
-      background-image:  var(--gradient);
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 @keyframes backgroundSizeAnimation {
@@ -347,7 +304,6 @@ body {
     100% {
         background-position: 100%;
     }
-
 }
 
 .purpleText {
@@ -363,7 +319,6 @@ body {
     margin: 0 3px;
     padding: 2px 4px;
 }
-
 .iconContainer {
     width: 100%;
     height: 60px;
@@ -371,15 +326,10 @@ body {
     align-items: center;
     overflow-x: scroll;
     margin-top: 20px;
-
 }
-
 .iconContainer::-webkit-scrollbar {
     display: none;
 }
-
-
-
 .iconItem {
     width: 49px;
     height: 43px;
@@ -412,22 +362,15 @@ body {
     margin-left: 10px;
     backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
     background: var(--item_bg_color);
-
     align-items: center;
     justify-content: center;
     transition: width 1s ease, opacity 1s ease, transform 1s ease;
     flex-shrink: 0;
 }
-
 .iconTip {
     white-space: nowrap;
     display: none;
 }
-
-
-
-
-
 .iconItem:hover {
     width: 95px;
     transform: translateY(-2px);
@@ -441,7 +384,6 @@ body {
 
 .switch:hover {
     width: 55px;
-    /* transform: translateY(-2px); */
     background: var(--item_hover_color);
 }
 
@@ -489,8 +431,6 @@ body {
     backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
     -webkit-backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
     transition: opacity 0.3s ease, background-color 0.3s ease, border 0.3s ease, transform 0.2s ease;
-
-
 }
 
 .projectItem {
@@ -502,7 +442,6 @@ body {
     width: calc(25% - 15px);
     backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
     transition: opacity 0.5s ease, background-color 0.2s ease, border 0.2s ease, transform 0.3s ease;
-
 }
 
 
@@ -514,7 +453,6 @@ body {
 
 .projectItem.pressed {
     transform: scale(0.9);
-    /* 缩小到原来的0.9倍 */
     background-color: var(--item_hover_color);
 }
 
@@ -568,7 +506,6 @@ body {
 }
 
 .projectItemRight img {
-
     height: 39px;
     width: 39px;
 
@@ -811,7 +748,6 @@ footer {
     top: 12.5%;
     bottom: 12.5%;
     right: 5px;
-
     border-radius: 20px;
     transition: right 0.2s ease-in 0s;
 }
