@@ -37,8 +37,6 @@ a:focus {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
-/* 设置滚动条样式 */
 ::-webkit-scrollbar {
     width: 0px;
 }
@@ -52,8 +50,6 @@ a:focus {
 ::-webkit-scrollbar-track {
     background-color: var(--main_bg_color, linear-gradient(50deg, #a2d0ff, #ffffff));
 }
-
-
 
 html[data-theme="Dark"] {
     
@@ -72,11 +68,6 @@ html[data-theme="Dark"] {
     --back_filter_color: #000000;
     --fill:#ffffff;
 }
-
-
-
-
-
 
 body {
     height: 100%;
@@ -637,48 +628,34 @@ footer {
     .lyi-left {
         display: none;
     }
-
     .a .projectItemRight {
         display: none;
 
     }
-
     .a .projectItemRight img {
         display: none;
 
     }
-
     .a .projectItemLeft {
         width: 100%;
     }
-
     .a {
-
-        width: calc(50% - 18px);
-  margin: 9px;
-
+        width: calc(50% - 18px); margin: 9px;
     }
-
     .b {
         height: 110px;
         margin: 8px 15px;
         width: calc(100% - 30px);
     }
-
-
-
     .lyi-right {
         width: 100%;
     }
-
     .tanChiShe {
         width: 100%;
     }
-
     .description {
         font-size: 4vw;
     }
-
     .welcome {
         font-size: 10vw;
         margin: 2vw 0;
@@ -714,25 +691,7 @@ footer {
     .skill #skillPc {
         display: none;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
 .tc {
     position: fixed;
    
@@ -782,15 +741,6 @@ footer {
     transform: translateY(0) scale(1);
 
 }
-
-
-
-
-
-
-
-
-
 .onoffswitch {
     position: relative;
     width: 38px;
