@@ -1,51 +1,3 @@
-/*
---svgcolor svg图标的颜色
---main-bg-color主页背景
---main-text-color文本颜色
---gradient标题渐变颜色
-
---purple-text-color描述紫色文本颜色
---text-bg-color描述紫色文本背景颜色
---item-bg-color项目背景颜色
---item-hover-color项目鼠标移入颜色
---item-left-title-color项目标题颜色
---item-left-text-color项目描述颜色
---footer-text-color底部文本颜色
---left-tag-item左侧标签颜色
---card-filter卡片模糊的数值
---back-filter背景模糊的数值
---back-filter-color全局阴影遮罩
-
-*/
-/*卡片模糊的数值非常吃性能,背景模糊的数值可以模糊也可以不模糊
-
-0为不模糊,数值越大模糊程度越高
-
-这两个任选其一进行模糊
-
-一个有数字另一个建议为0
-
-
-内置4套白天主题修改办法
-
-
-
-每套主题的结构都为html{
-    
-}
-
-只有最下面的会生效,也就是将你要设置的主题剪切到最下面
-*/
-
-
-
-
-
-
-
-
-/*非常吃性能,低配手机会卡顿*/
-/*卡片模糊背景＋黑色透明卡片+白色svg**/
 html {
     --name: 主题1;
     --main_bg_color: url(../img/background.jpg);
@@ -66,7 +18,6 @@ html {
 }
 
 html {
-
     /*图片模糊背景＋白色透明卡片+黑色svg*/
     --name: 主题2;
     --main_bg_color: url(../img/background.jpg);
@@ -88,7 +39,6 @@ html {
 
 html {
     /*蓝色渐变+黑色svg**/
-
     --name: 主题3;
     --main_bg_color: linear-gradient(50deg, #a2d1ff, #ffffff);
     --main_text_color: #000000;
@@ -106,8 +56,6 @@ html {
     --back_filter_color: #00000000;
      --fill:#000000;
 }
-
-
 
 html {
     /*白色简约+黑色svg**/
