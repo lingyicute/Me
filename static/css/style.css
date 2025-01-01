@@ -64,7 +64,7 @@ html[data-theme="Dark"] {
 
 body {
     height: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     width: 100%;
     position: relative;
     font-family: "b",  "a", sans-serif;
