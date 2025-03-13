@@ -1,12 +1,3 @@
-console.log('%cCopyright © 2024 lingyicute',
-    'background-color: #ff00ff; color: white; font-size: 24px; font-weight: bold; padding: 10px;'
-);
-console.log('%c   /\\_/\\', 'color: #8B4513; font-size: 20px;');
-console.log('%c  ( o.o )', 'color: #8B4513; font-size: 20px;');
-console.log(' %c  > ^ <', 'color: #8B4513; font-size: 20px;');
-console.log('  %c /  ~ \\', 'color: #8B4513; font-size: 20px;');
-console.log('  %c/______\\', 'color: #8B4513; font-size: 20px;');
-
 document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
 });
@@ -88,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var themeState = getCookie("themeState") || "Light";
     var tanChiShe = document.getElementById("tanChiShe");
     function changeTheme(theme) {
-        tanChiShe.src = "//92li.us.kg/static/svg/snake-" + theme + ".svg";
+        tanChiShe.src = "//92li.uk/static/svg/snake-" + theme + ".svg";
         html.dataset.theme = theme;
         setCookie("themeState", theme, 365);
         themeState = theme;
