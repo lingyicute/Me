@@ -1,11 +1,6 @@
 @font-face {
-    font-family: "a";
-    src: url();
-    font-display: swap;
-}
-@font-face {
     font-family: "b";
-    src: url(../fonts/pacifico.woff2) format('woff2');
+    src: url(../fonts/XNN.woff2) format('woff2');
     font-display: swap;
 }
 * {
@@ -58,7 +53,7 @@ body {
     min-height: 100%;
     width: 100%;
     position: relative;
-    font-family: "b",  "a", sans-serif;
+    font-family: "b", sans-serif;
     background: var(--main_bg_color);
     background-repeat: no-repeat;
     background-size: cover;
