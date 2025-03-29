@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
 var pageLoading = document.querySelector("#lyi-loading");
 window.addEventListener('load', function () {
     setTimeout(function () {
+        pageLoading.style.transition = 'opacity 0.5s ease';
         pageLoading.style.opacity = '0';
     }, 100);
 });
