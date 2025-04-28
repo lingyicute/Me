@@ -3,12 +3,19 @@
     src: url(../fonts/XNN.woff2) format('woff2');
     font-display: swap;
 }
+@font-face {
+    font-family: "emoji";
+    src: url(../fonts/Segoe\ UI\ Emoji.woff2) format('woff2');
+    font-display: swap;
+    unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+1F1E6-1F1FF, U+1F900-1F9FF, U+2600-26FF, U+2700-27BF;
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     user-select: none;
     transition: background-color 0.2s ease;
+    font-family: "emoji", "b", sans-serif;
 }
 a:hover,
 a:link,
@@ -53,7 +60,7 @@ body {
     min-height: 100%;
     width: 100%;
     position: relative;
-    font-family: "b", sans-serif;
+    font-family: "emoji", "b", sans-serif;
     background: var(--main_bg_color);
     background-repeat: no-repeat;
     background-size: cover;
