@@ -1,6 +1,6 @@
 html {
     --name: lyi;
-    --main_bg_color: url(../img/bg.avif);
+    --main_bg_color: url(../img/bg.webp);
     --main_text_color: #eeeeee;
     --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
     --purple_text_color: #747bff;
