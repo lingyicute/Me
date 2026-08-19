@@ -150,13 +150,14 @@ body {
     position: relative;
     aspect-ratio: 1/1;
     margin-top: 50px;
+    margin-bottom: 15px;
     background-size: cover;
     border-radius: 50%;
 }
 .left-div {
     flex-shrink: 0;
     width: 100%;
-    border-radius: 13px;
+    border-radius: 20px;
     margin-top: 15px;
     padding: 20px;
     backdrop-filter: blur(var(--card_filter));
