@@ -239,9 +239,9 @@ body {
 .lyi-right {
     width: calc(100% - 230px);
     display: flex;
-    padding: 20px;
+    padding: 32px;
   position: relative;
-    padding-bottom: 50px;
+    padding-bottom: 75px;
     flex-direction: column;
 }
 .welcome {
