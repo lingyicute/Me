@@ -2,6 +2,50 @@
     'use strict';
 
     const root = document.documentElement;
+
+    function initLoadingScreen() {
+        const loader = document.getElementById('lyi-loading');
+        if (!loader) return;
+        let disposed = false;
+        let exitTimer;
+        let cleanupTimer;
+        function cleanup() {
+            if (disposed) return;
+            disposed = true;
+            clearTimeout(exitTimer);
+            clearTimeout(cleanupTimer);
+            loader.removeEventListener('transitionend', onTransitionEnd);
+            window.removeEventListener('load', reveal);
+            window.removeEventListener('pagehide', finish);
+            window.removeEventListener('home:ready', cleanup);
+            loader.remove(); // Also destroys the spinner's infinite animation.
+        }
+        function finish() {
+            cleanup();
+            window.dispatchEvent(new Event('home:ready'));
+        }
+        function onTransitionEnd(event) {
+            if (event.target === loader && event.propertyName === 'opacity') finish();
+        }
+        function reveal() {
+            if (disposed) return;
+            exitTimer = setTimeout(() => {
+                loader.classList.add('is-leaving');
+                if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    finish();
+                    return;
+                }
+                loader.addEventListener('transitionend', onTransitionEnd);
+                // transitionend may be canceled/suppressed; cleanup must still run.
+                cleanupTimer = setTimeout(finish, 650);
+            }, 100);
+        }
+        window.addEventListener('home:ready', cleanup, { once: true });
+        window.addEventListener('pagehide', finish, { once: true });
+        if (document.readyState === 'complete') reveal();
+        else window.addEventListener('load', reveal, { once: true });
+    }
+    initLoadingScreen();
     const afterLoad = callback => {
         const schedule = () => {
             if ('requestIdleCallback' in window) requestIdleCallback(callback, { timeout: 2000 });
@@ -124,7 +168,6 @@
         let duration = 1;
         let elapsed = 0;
         let startedAt = 0;
-        let lastDraw = -Infinity;
         let playing = false;
         let frameId = 0;
         let modalOpen = false;
@@ -144,17 +187,14 @@
         }
         function frame(now) {
             if (!playing) return;
-            // At most 30 draws/second, regardless of a 60/120/144 Hz display.
-            if (now - lastDraw >= 1000 / 30) {
-                renderer.draw(percentAt(now));
-                lastDraw = now;
-            }
+            // Draw on every browser animation frame, with no fixed FPS cap.
+            // Wall-clock interpolation keeps speed independent of refresh rate.
+            renderer.draw(percentAt(now));
             frameId = requestAnimationFrame(frame);
         }
         function start() {
             if (playing || !renderer) return;
             startedAt = performance.now();
-            lastDraw = -Infinity;
             playing = true;
             stage.dataset.playerState = 'playing';
             frameId = requestAnimationFrame(frame);
