@@ -86,7 +86,7 @@ body {
     min-height: 100vh;
     width: 100%;
     position: relative;
-    font-family: "emoji", "b", sans-serif;
+    font-family: "b", "emoji", sans-serif;
     /* Tint the background in the same paint, not a full-screen filter layer. */
     background-image: linear-gradient(var(--back_filter_color), var(--back_filter_color)), var(--main_bg_color);
     background-repeat: no-repeat;
