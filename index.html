@@ -13,6 +13,20 @@
 			const saved = document.cookie.match(/(?:^|;\s*)themeState=(Light|Dark)(?:;|$)/);
 			if (saved) document.documentElement.dataset.theme = saved[1];
 		} catch { /* Sandboxed/private browsing: retain the default Light theme. */ }
+		// Immersive interaction is intentional, not a performance defect.
+		document.addEventListener('contextmenu', event => event.preventDefault());
+		// Independent of the deferred app: failed requests must not trap the screen.
+		(() => {
+			const cancelGuard = () => {
+				clearTimeout(guard);
+				window.removeEventListener('home:ready', cancelGuard);
+			};
+			const guard = setTimeout(() => {
+				document.getElementById('lyi-loading')?.remove();
+				window.dispatchEvent(new Event('home:ready'));
+			}, 10000);
+			window.addEventListener('home:ready', cancelGuard, { once: true });
+		})();
 	</script>
 	<link rel="preload" href="./static/fonts/nebulove-subset.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./static/fonts/emoji-subset.woff2" as="font" type="font/woff2" crossorigin>
@@ -20,10 +34,13 @@
 	<link rel="preload" href="./static/img/bg-mobile.webp" as="image" media="(max-width: 800px)">
 	<link rel="stylesheet" href="./static/css/style.css">
 	<script defer src="./static/js/script.js"></script>
-	<noscript><style>#theme-toggle, #avatar-button, #tanChiShe { display: none; }</style></noscript>
+	<noscript><style>#lyi-loading, #theme-toggle, #avatar-button, #tanChiShe { display: none; }</style></noscript>
 </head>
 
 <body>
+	<div id="lyi-loading" aria-hidden="true">
+		<div id="lyi-loading-center"></div>
+	</div>
 	<div class="lyi-main">
 		<div class="lyi-left">
 			<div class="logo" style="background-image: url(./static/img/avatar.webp);">
@@ -134,9 +151,9 @@
 				</div>
 				<div class="tanChiShe">
 					<div class="snake-stage" data-player-state="static">
-						<img id="tanChiShe" width="880" height="192" alt="贡献蛇形动画" decoding="async">
+						<img id="tanChiShe" width="880" height="192" alt="蛇形动画" decoding="async">
 						<canvas id="snake-canvas" width="880" height="192" aria-hidden="true" hidden></canvas>
-						<noscript><img src="./static/svg/snake-Light-static.svg" width="880" height="192" alt="贡献记录" decoding="async" loading="lazy"></noscript>
+						<noscript><img src="./static/svg/snake-Light-static.svg" width="880" height="192" alt="蛇形动画" decoding="async" loading="lazy"></noscript>
 					</div>
 					<button class="snake-toggle" id="snake-toggle" type="button" aria-label="播放贡献动画" aria-pressed="false" title="播放 / 暂停贡献动画" hidden>
 						<svg aria-hidden="true" class="play-icon" viewBox="0 0 16 16"><path d="M4 2 14 8 4 14Z"/></svg>
