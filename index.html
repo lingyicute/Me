@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html class="92li">
+<html class="92li" lang="zh-CN" data-theme="Light">
 
-<head class="92li">
+<head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>梨のHome</title>
-	<link rel="icon" href="/static/img/heartface.png">
+	<link rel="icon" href="./static/img/favicon.png" type="image/png" sizes="64x64">
 	<meta name="description" content="🍐 × 💻 = ❤️ | 想用开源咒语改变世界 🌟">
 	<meta name="keywords" content="lingyicute">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="/static/css/style.css">
-	<link rel="stylesheet" href="/static/css/root.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		try {
+			const saved = document.cookie.match(/(?:^|;\s*)themeState=(Light|Dark)(?:;|$)/);
+			if (saved) document.documentElement.dataset.theme = saved[1];
+		} catch { /* Sandboxed/private browsing: retain the default Light theme. */ }
+	</script>
+	<link rel="preload" href="./static/fonts/nebulove-subset.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="./static/fonts/emoji-subset.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="./static/img/bg-desktop.webp" as="image" media="(min-width: 801px)">
+	<link rel="preload" href="./static/img/bg-mobile.webp" as="image" media="(max-width: 800px)">
+	<link rel="stylesheet" href="./static/css/style.css">
+	<script defer src="./static/js/script.js"></script>
+	<noscript><style>#theme-toggle, #avatar-button, #tanChiShe { display: none; }</style></noscript>
 </head>
 
 <body>
-	<div id="lyi-loading">
-		<div id="lyi-loading-center">
-		</div>
-	</div>
-	<div class="lyi-filter"></div>
-
 	<div class="lyi-main">
 		<div class="lyi-left">
-			<div class="logo" style="background-image: url(/static/img/logo.webp);">
+			<div class="logo" style="background-image: url(./static/img/avatar.webp);">
 				<img style="position: absolute;top:-10%;left:-8%;width: 120%; aspect-ratio: 1/1;"
-					src="/static/img/logoframe.png">
+					src="./static/img/logoframe.png" width="489" height="489" alt="" decoding="async">
 			</div>
 			<div class="left-div left-des">
 				<div class="left-des-item">
-					<svg t="1705773709627" class="icon" viewBox="0 0 1024 1024" version="1.1">
+					<svg aria-hidden="true" t="1705773709627" class="icon" viewBox="0 0 1024 1024" version="1.1">
 						<path
 							d="M512 249.976471c-99.388235 0-180.705882 81.317647-180.705882 180.705882s81.317647 180.705882 180.705882 180.705882 180.705882-81.317647 180.705882-180.705882-81.317647-180.705882-180.705882-180.705882z m0 301.17647c-66.258824 0-120.470588-54.211765-120.470588-120.470588s54.211765-120.470588 120.470588-120.470588 120.470588 54.211765 120.470588 120.470588-54.211765 120.470588-120.470588 120.470588z" />
 						<path
@@ -37,7 +41,7 @@
 					China
 				</div>
 				<div class="left-des-item">
-					<svg fill="#000000" height="800px" width="800px" version="1.1" viewBox="0 0 470 470"
+					<svg aria-hidden="true" fill="#000000" height="800px" width="800px" version="1.1" viewBox="0 0 470 470"
 						enable-background="new 0 0 470 470">
 						<path
 							d="m462.5,420h-35.876v-142.99c0-0.02 0-30.01 0-30.01 0-26.191-21.309-47.5-47.5-47.5h-116.624v-68.191c0-9.649-7.851-17.5-17.5-17.5h-2.5v-22.5c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v22.5h-2.5c-9.649,0-17.5,7.851-17.5,17.5v68.191h-123.043c-26.191,0-47.5,21.309-47.5,47.5v173h-29.457c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5 7.5,7.5h4.343l4.325,15.137c3.182,11.138 14.748,19.863 26.332,19.863h385c11.584,0 23.15-8.725 26.332-19.862l4.325-15.138h4.343c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5zm-240-288.691c0-1.355 1.145-2.5 2.5-2.5h20c1.355,0 2.5,1.145 2.5,2.5v68.191h-25v-68.191zm-138.043,83.191h294.667c17.92,0 32.5,14.58 32.5,32.5v23c-13.563,1.819-21.473,8.441-28.555,14.402-7.553,6.357-13.519,11.378-26.396,11.378s-18.842-5.021-26.396-11.378c-8.299-6.985-17.706-14.903-36.055-14.903-18.347,0-27.752,7.917-36.051,14.903-7.552,6.357-13.517,11.378-26.391,11.378-12.875,0-18.839-5.021-26.392-11.378-8.299-6.985-17.705-14.903-36.052-14.903-18.347,0-27.752,7.917-36.051,14.903-4.436,3.734-8.626,7.262-14.052,9.321-2.912,1.105-4.838,3.896-4.838,7.012v51.285c0,4.136-3.364,7.5-7.5,7.5-4.135,0-7.5-3.364-7.5-7.5v-51.039c0.105-3.161-1.803-6.105-4.835-7.256-5.427-2.06-9.618-5.588-14.054-9.323-7.081-5.961-14.989-12.583-28.55-14.402v-23c0.001-17.92 14.58-32.5 32.501-32.5zm-32.5,70.688c8.032,1.574 12.983,5.717 18.89,10.69 3.871,3.258 8.145,6.856 13.55,9.688v46.454c0,12.407 10.093,22.5 22.5,22.5s22.5-10.093 22.5-22.5l.001-46.454c5.404-2.832 9.679-6.43 13.549-9.688 7.552-6.357 13.517-11.378 26.391-11.378 12.875,0 18.84,5.021 26.392,11.378 8.299,6.985 17.705,14.903 36.052,14.903s27.753-7.917 36.051-14.903c7.552-6.357 13.517-11.378 26.391-11.378 12.877,0 18.843,5.021 26.396,11.379 8.299,6.985 17.706,14.902 36.055,14.902s27.755-7.917 36.055-14.902c5.909-4.973 10.861-9.117 18.896-10.691v134.812h-359.669v-134.812zm387.452,160.829c-1.343,4.701-7.02,8.983-11.909,8.983h-385c-4.89,0-10.566-4.282-11.909-8.983l-3.148-11.017h415.114l-3.148,11.017z" />
@@ -48,7 +52,7 @@
 				</div>
 			</div>
 			<div class="left-div left-tag">
-				<div class="left-tag-item">Linux & BSD
+				<div class="left-tag-item">Linux &amp; BSD
 				</div>
 				<div class="left-tag-item">AOSP
 				</div>
@@ -77,77 +81,79 @@
 		</div>
 		<div class="lyi-right">
 			<header>
-				<div class="index-logo" style="background-image: url(/static/img/logo.webp);">
+				<div class="index-logo" style="background-image: url(./static/img/avatar.webp);">
 					<img style="position: absolute;top:-10%;left:-8%;width: 120%; aspect-ratio: 1/1;"
-						src="/static/img/logoframe.png">
+						src="./static/img/logoframe.png" width="489" height="489" alt="" decoding="async">
 				</div>
 				<div style="height: 27px;"></div>
 				<div class="welcome">
 					Hi, </div>
-				<div class="gradientText">
-					I'm lingyicute </div>
+				<h1 class="gradientText">
+					I'm lingyicute </h1>
 
-				<div class="description">🥰 <span class="purpleText">Open Source</span> Enthusiast, Developer & Security Researcher
+				<div class="description">🥰 <span class="purpleText">Open Source</span> Enthusiast, Developer &amp; Security Researcher
 				</div>
 				<div class="description">🍐 × 💻 = ❤️ | 想用开源咒语改变世界 🌟</div>
 				<div class="description">📝 The only way to do <span class="purpleText textBackground">great</span> is to <span class="purpleText textBackground">love</span> what you do. </div>
 
 				<div class="iconContainer">
-					<a class="iconItem" onclick="" href="https://github.com/lingyicute">
-						<svg t="1704870335945" class="icon" viewBox="0 0 874 1024" version="1.1"
+					<a class="iconItem" href="https://github.com/lingyicute" aria-label="GitHub">
+						<svg aria-hidden="true" t="1704870335945" class="icon" viewBox="0 0 874 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="2487">
 							<path
 								d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9 23.5 23.2 38.1 55.4 38.1 91v112.5c0.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" />
 						</svg>
-						<div class="iconTip">Github</div>
-					</a><a class="iconItem" onclick="" href="/cdn-cgi/l/email-protection#2a46436a13184643045f41">
-						<svg t="1704870588438" class="icon" viewBox="0 0 874 1024" version="1.1"
+						<div class="iconTip" aria-hidden="true">Github</div>
+					</a><a class="iconItem" href="mailto:li@92li.uk" aria-label="Mail">
+						<svg aria-hidden="true" t="1704870588438" class="icon" viewBox="0 0 874 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="3174">
 							<path
 								d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l304.103619 257.828572a170.666667 170.666667 0 0 0 220.745142 0L926.47619 355.644952zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z" />
 						</svg>
-						<div class="iconTip">Mail</div>
-					</a><a class="iconItem" onclick="" href="https://t.me/lingyicute2323">
-						<svg t="1712319361023" class="icon" viewBox="0 0 32 32" version="1.1"
+						<div class="iconTip" aria-hidden="true">Mail</div>
+					</a><a class="iconItem" href="https://t.me/lingyicute2323" aria-label="Telegram">
+						<svg aria-hidden="true" t="1712319361023" class="icon" viewBox="0 0 32 32" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="1861">
 							<path
 								d="M29.919 6.163l-4.225 19.925c-0.319 1.406-1.15 1.756-2.331 1.094l-6.438-4.744-3.106 2.988c-0.344 0.344-0.631 0.631-1.294 0.631l0.463-6.556 11.931-10.781c0.519-0.462-0.113-0.719-0.806-0.256l-14.75 9.288-6.35-1.988c-1.381-0.431-1.406-1.381 0.288-2.044l24.837-9.569c1.15-0.431 2.156 0.256 1.781 2.013z" />
 						</svg>
-						<div class="iconTip">Telegram</div>
-					</a><a class="iconItem" onclick="pop('/static/img/logo.webp')" href="javascript:void(0)">
-						<svg t="1705247464964" class="icon" viewBox="0 0 24 24" version="1.1"
+						<div class="iconTip" aria-hidden="true">Telegram</div>
+					</a><button class="iconItem" id="avatar-button" type="button" aria-label="头像预览" aria-haspopup="dialog">
+						<svg aria-hidden="true" t="1705247464964" class="icon" viewBox="0 0 24 24" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="4987">
 							<path
 								d="M14.8692 2.22379C14.5731 1.92633 14.0919 1.92527 13.7944 2.22141C13.497 2.51756 13.4959 2.99876 13.7921 3.29621L14.4855 3.9927L7.53667 10.9723L8.22692 11.0493C9.61873 11.2047 10.7136 12.3074 10.8676 13.6994C10.9262 14.2289 11.2627 14.6842 11.7462 14.8941L13.7129 15.7105L19.9323 9.46362L20.7014 10.2362C20.9976 10.5336 21.4788 10.5347 21.7762 10.2386C22.0737 9.94242 22.0747 9.46122 21.7786 9.16377L14.8692 2.22379Z" />
 							<path
 								d="M4.12806 14.396L6.16625 12.3488L8.05833 12.56C8.73918 12.636 9.2805 13.1767 9.35681 13.8665C9.4754 14.9386 10.159 15.8658 11.1492 16.292L12.5536 16.875L9.57484 19.8669C8.07075 21.3777 5.63215 21.3777 4.12806 19.8669C2.62398 18.3562 2.62398 15.9068 4.12806 14.396Z" />
 						</svg>
-						<div class="iconTip">Test</div>
-					</a><a class="switch" href="javascript:void(0)">
-						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-								checked>
-							<label class="onoffswitch-label" for="myonoffswitch">
-								<span class="onoffswitch-inner"></span>
-								<span class="onoffswitch-switch"></span>
-							</label>
-						</div>
-					</a>
+						<div class="iconTip" aria-hidden="true">Avatar</div>
+					</button>
+					<button class="switch" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="深色主题">
+						<span class="onoffswitch" aria-hidden="true"><span class="onoffswitch-switch"></span></span>
+					</button>
 				</div>
 				<div class="tanChiShe">
-					<img id="tanChiShe" src="/static/svg/snake-Light.svg" alt="">
+					<div class="snake-stage" data-player-state="static">
+						<img id="tanChiShe" width="880" height="192" alt="贡献蛇形动画" decoding="async">
+						<canvas id="snake-canvas" width="880" height="192" aria-hidden="true" hidden></canvas>
+						<noscript><img src="./static/svg/snake-Light-static.svg" width="880" height="192" alt="贡献记录" decoding="async" loading="lazy"></noscript>
+					</div>
+					<button class="snake-toggle" id="snake-toggle" type="button" aria-label="播放贡献动画" aria-pressed="false" title="播放 / 暂停贡献动画" hidden>
+						<svg aria-hidden="true" class="play-icon" viewBox="0 0 16 16"><path d="M4 2 14 8 4 14Z"/></svg>
+						<svg aria-hidden="true" class="pause-icon" viewBox="0 0 16 16"><path d="M3 2h4v12H3zM9 2h4v12H9z"/></svg>
+					</button>
 				</div>
 			</header>
 
-		<content>
-			<div class="title"><svg t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1"
+		<main id="projects">
+			<div class="title"><svg aria-hidden="true" t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1"
 					xmlns="http://www.w3.org/2000/svg" p-id="1891">
 					<path
 						d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"
 						p-id="1892"></path>
 				</svg>Link </div>
 			<a class="projectCard" href="https://s.92li.uk" target="_blank" rel="noopener" style="margin-bottom: 14px;">
-				<span class="projectCardIcon"><svg viewBox="0 0 24 24">
+				<span class="projectCardIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 						<path
 							d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
 						<path d="m9 12 2 2 4-4" />
@@ -158,17 +164,17 @@
 					<span class="projectCardTags">
 						<span class="projectCardTag">Linux</span>
 						<span class="projectCardTag">GTK4</span>
-						<span class="projectCardTag">Security & System Hardening</span>
+						<span class="projectCardTag">Security &amp; System Hardening</span>
 					</span>
 				</span>
-				<span class="linkItemGo projectCardGo"><svg viewBox="0 0 24 24">
+				<span class="linkItemGo projectCardGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 						<path d="M7 7h10v10" />
 						<path d="M7 17 17 7" />
 					</svg></span>
 			</a>
 			<div class="linkGrid">
 				<a class="linkItem" href="https://test.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="m8 11 2 2 4-4" />
 							<circle cx="11" cy="11" r="8" />
 							<path d="m21 21-4.3-4.3" />
@@ -177,13 +183,13 @@
 						<span class="linkItemTitle">test.92li.uk</span>
 						<span class="linkItemDesc">浏览器检查</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://sp.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<polygon
 								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
 						</svg></span>
@@ -191,13 +197,13 @@
 						<span class="linkItemTitle">sp.92li.uk</span>
 						<span class="linkItemDesc">StarryPass 密码管理器</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://p.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path
 								d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
 							<circle cx="16.5" cy="7.5" r=".5" fill="currentColor" stroke="none" />
@@ -206,13 +212,13 @@
 						<span class="linkItemTitle">p.92li.uk</span>
 						<span class="linkItemDesc">高强度密码生成器</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://co.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M9 18V5l12-2v13" />
 							<circle cx="6" cy="18" r="3" />
 							<circle cx="18" cy="16" r="3" />
@@ -221,13 +227,13 @@
 						<span class="linkItemTitle">co.92li.uk</span>
 						<span class="linkItemDesc">YiClapOnline</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://np.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
 							<path d="M2 6h4" />
 							<path d="M2 10h4" />
@@ -240,13 +246,13 @@
 						<span class="linkItemTitle">np.92li.uk</span>
 						<span class="linkItemDesc">小小记事本 Pro</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://spin.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<circle cx="12" cy="12" r="10" />
 							<path d="m4.93 4.93 4.24 4.24" />
 							<path d="m14.83 9.17 4.24-4.24" />
@@ -258,13 +264,13 @@
 						<span class="linkItemTitle">spin.92li.uk</span>
 						<span class="linkItemDesc">随机转盘</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://yitate.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
 							<path d="M12 18h.01" />
 						</svg></span>
@@ -272,13 +278,13 @@
 						<span class="linkItemTitle">yitate.92li.uk</span>
 						<span class="linkItemDesc">Android 屏幕方向固定小工具</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://sf.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path
 								d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
 						</svg></span>
@@ -286,13 +292,13 @@
 						<span class="linkItemTitle">sf.92li.uk</span>
 						<span class="linkItemDesc">StarryFiles 文件管理</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://wu.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
 							<path d="M21 3v5h-5" />
 							<path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
@@ -302,13 +308,13 @@
 						<span class="linkItemTitle">wu.92li.uk</span>
 						<span class="linkItemDesc">Android Webview Updater</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 				<a class="linkItem" href="https://yomi.92li.uk" target="_blank" rel="noopener">
-					<span class="linkItemIcon"><svg viewBox="0 0 24 24">
+					<span class="linkItemIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path
 								d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
 						</svg></span>
@@ -316,21 +322,21 @@
 						<span class="linkItemTitle">yomi.92li.uk</span>
 						<span class="linkItemDesc">重拾社交最初的美好</span>
 					</span>
-					<span class="linkItemGo"><svg viewBox="0 0 24 24">
+					<span class="linkItemGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg></span>
 				</a>
 			</div>
 
-			<div class="title"><svg t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1"
+			<div class="title"><svg aria-hidden="true" t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1"
 					xmlns="http://www.w3.org/2000/svg" p-id="1891">
 					<path
 						d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"
 						p-id="1892"></path>
 				</svg>Project </div>
 			<a class="projectCard" href="https://opensource.92li.uk" target="_blank" rel="noopener">
-				<span class="projectCardIcon"><svg viewBox="0 0 24 24">
+				<span class="projectCardIcon"><svg aria-hidden="true" viewBox="0 0 24 24">
 						<line x1="6" x2="6" y1="3" y2="15" />
 						<circle cx="18" cy="6" r="3" />
 						<circle cx="6" cy="18" r="3" />
@@ -345,25 +351,21 @@
 						<span class="projectCardTag">Web</span>
 					</span>
 				</span>
-				<span class="linkItemGo projectCardGo"><svg viewBox="0 0 24 24">
+				<span class="linkItemGo projectCardGo"><svg aria-hidden="true" viewBox="0 0 24 24">
 						<path d="M7 7h10v10" />
 						<path d="M7 17 17 7" />
 					</svg></span>
 			</a>
 
-		</content>
+		</main>
 		</div>
 	</div>
 	<footer>
 		lingyicute © 2026 / Total visitor: <span id="vercount_value_site_pv">-</span>
 	</footer>
-	<div class="tc">
-		<div onclick="" class="tc-main">
-			<img class="tc-img" src="" alt="" srcset="">
-		</div>
-
-	</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
-<script src="/static/js/script.js"> </script>
-<script defer src="https://events.vercount.one/js"></script>
+	<dialog class="avatar-dialog" id="avatar-dialog" aria-label="头像预览">
+		<button class="dialog-close" id="dialog-close" type="button" aria-label="关闭头像预览">×</button>
+		<img id="avatar-preview" width="940" height="940" alt="lingyicute 的头像" decoding="async">
+	</dialog>
+</body>
 </html>

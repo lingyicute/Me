@@ -1,4 +1,4 @@
-name: Font Subsetting & Embed
+name: Font Subsetting
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 jobs:
-  subset-and-embed:
+  subset-fonts:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,23 +28,23 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install fonttools brotli
+      - name: Install maintenance dependencies
+        run: python -m pip install fonttools brotli
 
-      - name: Download Nebulove & Subset Font
-        run: |
-          python scripts/subset_font.py
+      - name: Generate cacheable font subsets
+        run: python scripts/subset_font.py
 
-      - name: Commit and push changes as user
+      - name: Commit font updates
+        env:
+          COMMIT_NAME: ${{ github.actor }}
+          COMMIT_EMAIL: ${{ github.event.pusher.email || format('{0}@users.noreply.github.com', github.actor) }}
         run: |
-          if git diff --quiet static/css/style.css scripts/.font-subset-cache.json; then
-            echo "No changes detected."
-          else
-            git config user.name "${{ github.actor }}"
-            git config user.email "${{ github.event.pusher.email || format('{0}@users.noreply.github.com', github.actor) }}"
-            git add static/css/style.css scripts/.font-subset-cache.json
-            git commit -m "perf: 更新 Nebulove 字体子集"
-            git push
+          git add static/css/style.css static/fonts/nebulove-subset.woff2 static/fonts/emoji-subset.woff2 scripts/.font-subset-cache.json
+          if git diff --cached --quiet; then
+            echo "No font changes detected."
+            exit 0
           fi
+          git config user.name "$COMMIT_NAME"
+          git config user.email "$COMMIT_EMAIL"
+          git commit -m "perf: 更新字体子集"
+          git push
