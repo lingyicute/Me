@@ -2,7 +2,7 @@
  
 The personal website of lingyicute.
 
-![image](https://raw.githubusercontent.com/lingyicute/Me/main/screenshot.webp)
+![image](https://raw.githubusercontent.com/lingyicute/Me/main/screenshot.png)
 
 ## 🗂️ License
 
