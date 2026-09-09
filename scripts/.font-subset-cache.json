@@ -1,9 +1,9 @@
 {
-  "fingerprint": "7c6dd4309d64e1e5e856eb9c7e5bc8c05f895683b25b11b869116eda43cd05b3",
+  "fingerprint": "8627a7695df39f44491d9910c9c470b7fac7b86180df4b0d1f72ebd82a3772ce",
   "source": "https://raw.githubusercontent.com/lingyicute/Nebulove/main/Nebulove.ttf",
-  "charset_count": 254,
+  "charset_count": 253,
   "outputs": {
     "nebulove-subset.woff2": "ce7abb93c5b05a14a7393d0f8498311a530562fe24fdd1a696587cac11f9f73d",
-    "emoji-subset.woff2": "ee4223c2e3972388a1683042be3b1b333cc520f4a73378bf11a3f3564dde97a2"
+    "emoji-subset.woff2": "fb34c54fcfd365e2946aefb53a7997e401b653382b6fe660b26a2fd6f710ee97"
   }
 }
