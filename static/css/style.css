@@ -207,7 +207,7 @@ body {
     width: 100%;
     height: 200px;
     font-size: 13px;
-    padding-left: 8px;
+    padding-left: 4px;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
 }
@@ -215,7 +215,7 @@ body {
 #line li {
     list-style: none;
     position: relative;
-    padding: 15px 0px 0px 15px;
+    padding: 15px 0px 17px 15px;
     border-left: 2px solid #d5d5d5;
     border-radius: 0;
     scroll-snap-align: end;
