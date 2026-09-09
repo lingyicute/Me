@@ -384,6 +384,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 26px;
+    padding-top:  21px;
     font-weight: 800;
     margin: 20px 0;
     transition: transform 0.4s ease;
