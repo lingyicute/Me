@@ -298,7 +298,7 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
-    padding: 8px 10px;
+    padding: 17px 1px;
 }
 .iconItem, .switch {
     width: 43px;
@@ -342,6 +342,7 @@ body {
 .tanChiShe {
     width: 85%;
     padding-right: 32px;
+    padding-top: 11px;
     position: relative;
 }
 .snake-stage {
