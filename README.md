@@ -6,7 +6,7 @@ The personal website of lingyicute.
 
 ## 🗂️ License
 
-Me is released under the GNU Affero General Public License v3.0 (AGPLv3).
+This program is released under the GNU Affero General Public License v3.0 (AGPLv3).
 
 Copyright (C) 2024-2026 lingyicute.
 
