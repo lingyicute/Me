@@ -27,27 +27,6 @@
   </url>
   <url>
     <loc>https://drop.92li.uk/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://drop.92li.uk/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://drop.92li.uk/zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://drop.92li.uk/"/>
-  </url>
-  <url>
-    <loc>https://drop.92li.uk/download</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://drop.92li.uk/download"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://drop.92li.uk/zh-CN/download"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://drop.92li.uk/download"/>
-  </url>
-  <url>
-    <loc>https://drop.92li.uk/zh-CN</loc>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://drop.92li.uk/zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://drop.92li.uk/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://drop.92li.uk/"/>
-  </url>
-  <url>
-    <loc>https://drop.92li.uk/zh-CN/download</loc>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://drop.92li.uk/zh-CN/download"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://drop.92li.uk/download"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://drop.92li.uk/download"/>
   </url>
   <url>
     <loc>https://gtp.92li.uk/</loc>
@@ -101,5 +80,8 @@
   </url>
   <url>
     <loc>https://yomi.92li.uk/</loc>
+  </url>
+  <url>
+    <loc>https://proxy-any.92li.uk/</loc>
   </url>
 </urlset>
