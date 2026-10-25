@@ -34,6 +34,55 @@
 	<link rel="preload" href="./static/img/bg-desktop.webp" as="image" media="(min-width: 801px)">
 	<link rel="preload" href="./static/img/bg-mobile.webp" as="image" media="(max-width: 800px)">
 	<style>
+/* Register the theme colors once so the no-View-Transitions fallback can
+   animate inherited values on <html>, rather than attaching a transition to
+   every element. The primary path below uses a single root snapshot fade. */
+@property --main_text_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #eeeeee;
+}
+@property --text_bg_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #00000040;
+}
+@property --item_bg_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #00000038;
+}
+@property --item_hover_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #33333338;
+}
+@property --item_left_title_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ffffff;
+}
+@property --item_left_text_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ffffff;
+}
+@property --footer_text_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ffffff;
+}
+@property --back_filter_color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #00000010;
+}
+@property --fill {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ffffff;
+}
+
 html {
     background-color: #08436e;
     --main_bg_color: url(./static/img/bg-desktop.webp);
@@ -130,6 +179,40 @@ body {
     background-position: center;
     background-attachment: scroll;
     color: var(--main_text_color);
+}
+/* Fade in one captured frame over the other. Opacity stays on the compositor,
+   avoiding the old universal background-color transition and its per-element
+   style/paint work. */
+@keyframes theme-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+::view-transition-group(root),
+::view-transition-old(root) {
+    animation: none;
+}
+::view-transition-old(root) {
+    z-index: 0;
+}
+::view-transition-new(root) {
+    animation: theme-fade-in 0.22s ease-in-out both;
+    mix-blend-mode: normal;
+    z-index: 1;
+}
+/* Browsers without same-document View Transitions animate registered colors
+   on the root only. The class exists for the 220 ms interaction, not at rest. */
+html.theme-transition-fallback {
+    transition:
+        background-color 0.22s ease-in-out,
+        --main_text_color 0.22s ease-in-out,
+        --text_bg_color 0.22s ease-in-out,
+        --item_bg_color 0.22s ease-in-out,
+        --item_hover_color 0.22s ease-in-out,
+        --item_left_title_color 0.22s ease-in-out,
+        --item_left_text_color 0.22s ease-in-out,
+        --footer_text_color 0.22s ease-in-out,
+        --back_filter_color 0.22s ease-in-out,
+        --fill 0.22s ease-in-out;
 }
 #lyi-loading {
     position: fixed;
@@ -743,6 +826,10 @@ html[data-theme="Dark"] .onoffswitch-switch { transform: translateX(16px); }
         transition: none !important;
         scroll-behavior: auto !important;
     }
+    ::view-transition-old(root), ::view-transition-new(root) {
+        animation: none !important;
+    }
+    html.theme-transition-fallback { transition: none !important; }
     .iconItem:hover, .title:hover, .linkItem:hover, .projectCard:hover,
     .linkItem:hover .linkItemIcon, .projectCard:hover .projectCardIcon,
     .linkItem:hover .linkItemGo, .projectCard:hover .linkItemGo,
@@ -1529,19 +1616,59 @@ html[data-theme="Dark"] .onoffswitch-switch { transform: translateX(16px); }
 
     const snake = createSnakePlayer();
     const themeButton = document.getElementById('theme-toggle');
+    const themeMotion = matchMedia('(prefers-reduced-motion: reduce)');
     const currentTheme = () => root.dataset.theme === 'Dark' ? 'Dark' : 'Light';
+    let themeTransitionRunning = false;
+    let fallbackCleanupTimer;
+
     function syncTheme() {
         const theme = currentTheme();
         themeButton.setAttribute('aria-checked', String(theme === 'Dark'));
         snake.setTheme(theme);
     }
-    themeButton.addEventListener('click', () => {
-        const theme = currentTheme() === 'Dark' ? 'Light' : 'Dark';
+    function applyTheme(theme) {
         root.dataset.theme = theme;
         try {
             document.cookie = `themeState=${theme}; Max-Age=31536000; Path=/; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
         } catch { /* The theme still works when storage is unavailable. */ }
         syncTheme();
+    }
+    function applyThemeWithFallback(theme) {
+        root.classList.add('theme-transition-fallback');
+        // Establish the old computed colors before changing the custom properties.
+        void root.offsetWidth;
+        applyTheme(theme);
+        clearTimeout(fallbackCleanupTimer);
+        fallbackCleanupTimer = setTimeout(() => {
+            root.classList.remove('theme-transition-fallback');
+        }, 260);
+    }
+    function transitionTheme(theme) {
+        if (themeMotion.matches) {
+            applyTheme(theme);
+            return;
+        }
+        if (typeof document.startViewTransition !== 'function') {
+            applyThemeWithFallback(theme);
+            return;
+        }
+        // A root snapshot cross-fade is composited as one opacity animation. It
+        // avoids tracking and repainting a transition on every themed element.
+        if (themeTransitionRunning) return;
+        themeTransitionRunning = true;
+        try {
+            const transition = document.startViewTransition(() => applyTheme(theme));
+            transition.finished.catch(() => {}).finally(() => {
+                themeTransitionRunning = false;
+            });
+        } catch {
+            themeTransitionRunning = false;
+            applyThemeWithFallback(theme);
+        }
+    }
+    themeButton.addEventListener('click', () => {
+        const theme = currentTheme() === 'Dark' ? 'Light' : 'Dark';
+        transitionTheme(theme);
     });
     syncTheme();
 
