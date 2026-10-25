@@ -33,8 +33,1065 @@
 	<link rel="preload" href="./static/fonts/emoji-subset.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./static/img/bg-desktop.webp" as="image" media="(min-width: 801px)">
 	<link rel="preload" href="./static/img/bg-mobile.webp" as="image" media="(max-width: 800px)">
-	<link rel="stylesheet" href="./static/css/style.css">
-	<script defer src="./static/js/script.js"></script>
+	<style>
+html {
+    background-color: #08436e;
+    --main_bg_color: url(../img/bg-desktop.webp);
+    --main_text_color: #eeeeee;
+    --purple_text_color: #747bff;
+    --text_bg_color: #00000040;
+    --item_bg_color: #00000038;
+    --item_hover_color: #33333338;
+    --item_left_title_color: #ffffff;
+    --item_left_text_color: #ffffff;
+    --footer_text_color: #ffffff;
+    --left_tag_item: rgb(27 42 57 / 20%);
+    --back_filter_color: #00000010;
+    --fill:#ffffff;
+}
+
+@media (max-width: 800px) {
+    html { --main_bg_color: url(../img/bg-mobile.webp); }
+}
+
+@font-face {
+    font-family: "b";
+    src: url("../fonts/nebulove-subset.woff2") format("woff2");
+    font-display: swap;
+}
+@font-face {
+    font-family: "emoji";
+    src: url("../fonts/emoji-subset.woff2") format("woff2");
+    font-display: swap;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+button {
+    font: inherit;
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+a:focus-visible, button:focus-visible {
+    outline: 2px solid #b9c4ff;
+    outline-offset: 4px;
+}
+/* Match the heading width while the handwritten font is loading. */
+@font-face {
+    font-family: "b-fallback";
+    src: local("Arial"), local("Liberation Sans");
+    size-adjust: 76.3%;
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--main_text_color, #000000);
+    border-radius: 8px;
+    height: 20%;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--main_bg_color, linear-gradient(50deg, #a2d0ff, #ffffff));
+}
+html[data-theme="Dark"] {
+    background-color: #090b12;
+    --main_text_color: #fff;
+    --purple_text_color: #747bff;
+    --text_bg_color: rgb(26, 4, 48);
+    --item_bg_color: rgb(19, 20, 24);
+    --item_hover_color: rgb(19, 23, 27);
+    --item_left_title_color: rgb(255, 255, 255);
+    --item_left_text_color: rgb(142, 142, 142);
+    --footer_text_color: #646464;
+    --left_tag_item: linear-gradient(50deg, #1f2327, #000000);
+    --back_filter_color: #000000BF;
+    --fill:#ffffff;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    font-family: "b", "emoji", sans-serif;
+    /* Tint the background in the same paint, not a full-screen filter layer. */
+    background-image: linear-gradient(var(--back_filter_color), var(--back_filter_color)), var(--main_bg_color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    color: var(--main_text_color);
+}
+#lyi-loading {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(white, #d8eaff);
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+#lyi-loading.is-leaving { opacity: 0; }
+#lyi-loading-center {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #472eff;
+    animation: zoom 1s linear infinite;
+}
+@keyframes zoom {
+    0% { transform: scale(0); opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0; }
+}
+.lyi-main {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1150px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+.lyi-left {
+    width: 230px;
+    flex-shrink: 0;
+    height: 100vh;
+    display: flex;
+    padding: 0 15px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+.lyi-left::-webkit-scrollbar {
+    display: none;
+}
+.logo img, .index-logo img { height: auto; }
+.logo {
+    flex-shrink: 0;
+    width: 90%;
+    position: relative;
+    aspect-ratio: 1/1;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    background-size: cover;
+    border-radius: 50%;
+}
+.left-div {
+    flex-shrink: 0;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 15px;
+    padding: 20px;
+    background: var(--item_bg_color);
+}
+.left-des {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.left-des-item {
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+.left-des-item i,.left-des-item svg{
+    width: 16px;
+    height: 16px;
+    fill:var(--fill);
+   font-size: 18px;
+    margin-right: 10px;
+}
+.left-tag {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 14px;
+}
+.left-tag-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    margin: 0px 5px 5px 0;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 10px;
+    background: var(--left_tag_item);
+}
+
+#line {
+    width: 100%;
+    height: 200px;
+    font-size: 13px;
+    padding-left: 4px;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+#line li {
+    list-style: none;
+    position: relative;
+    padding: 15px 0px 17px 15px;
+    border-left: 2px solid #d5d5d5;
+    border-radius: 0;
+    scroll-snap-align: end;
+    color: var(--main_text_color);
+}
+.focus {
+    width: 8px;
+    height: 8px;
+    border-radius: 22px;
+    background-color: rgb(255 255 255);
+    border: 2px solid #fff;
+    position: absolute;
+    left: -5px;
+    top: 50%;
+}
+#line li:first-child .focus:first-child {
+    background-color: #aaffcd;
+}
+#line::-webkit-scrollbar {
+    display: none;
+}
+.lyi-right {
+    width: calc(100% - 230px);
+    min-width: 0;
+    display: flex;
+    padding: 32px;
+    position: relative;
+    padding-bottom: 75px;
+    flex-direction: column;
+}
+.welcome {
+    font-size: 64px;
+    font-weight: 800;
+    margin: 20px 0;
+    font-family: "b", "b-fallback", sans-serif;
+    line-height: 1.2;
+}
+.index-logo {
+    flex-shrink: 0;
+    width: 40%;
+    margin-top: 30px;
+    position: relative;
+    max-width: 200px;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    border-radius: 50%;
+    border: 0.5px solid #ffffff;
+}
+.description {
+    font-size: 20px;
+    line-height: 1.35;
+    margin-top: 12px;
+}
+.gradientText {
+    font-size: 70px;
+    font-weight: 400;
+    font-family: "b", "b-fallback", sans-serif;
+    line-height: 1.2;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.purpleText {
+    color: var(--purple_text_color);
+    font-weight: 800;
+}
+.textBackground {
+    font-weight: 800;
+    background: var(--text_bg_color);
+    border-radius: 5px;
+    font-size: 17px;
+    margin: 0 3px;
+    padding: 2px 4px;
+}
+.iconContainer {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 17px 1px;
+}
+.iconItem, .switch {
+    width: 43px;
+    height: 43px;
+    border-radius: 100px;
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    background: var(--item_bg_color);
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+.iconItem svg {
+    width: 30px;
+    height: 22px;
+    fill: var(--fill);
+    margin-right: 3px;
+}
+.switch { width: 55px; }
+.iconTip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: #191b2a;
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 2;
+}
+.iconItem:focus-visible .iconTip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+.tanChiShe {
+    width: 85%;
+    padding-right: 32px;
+    padding-top: 11px;
+    position: relative;
+}
+.snake-stage {
+    position: relative;
+    aspect-ratio: 55 / 12;
+    contain: layout paint;
+}
+.snake-stage img, .snake-stage canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 55 / 12;
+}
+.snake-stage noscript img { position: absolute; inset: 0; }
+.snake-stage img:not([src]) { visibility: hidden; }
+.snake-stage canvas {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+}
+.snake-stage canvas[hidden] { display: none; }
+.snake-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--item_bg_color);
+}
+.snake-toggle[hidden] { display: none; }
+.snake-toggle svg { width: 12px; height: 12px; fill: currentColor; }
+.snake-toggle[aria-pressed="true"] .play-icon,
+.snake-toggle[aria-pressed="false"] .pause-icon { display: none; }
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    padding-top:  21px;
+    font-weight: 800;
+    margin: 20px 0;
+    transition: transform 0.4s ease;
+}
+.title i ,.title svg{
+    margin-right: 8px;
+    height: 26px;
+    width: 26px;
+   fill:var(--fill);
+}
+
+/* ---------- Link ---------- */
+.linkGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 10px;
+}
+.linkItem {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 17px;
+    border-radius: 20px;
+    background: var(--item_bg_color);
+    transition: transform 0.25s ease;
+}
+.linkItem:active {
+    transform: scale(0.97);
+}
+.linkItemIcon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text_bg_color);
+    transition: transform 0.3s ease;
+}
+.linkItemIcon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--fill);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.linkItemMeta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.linkItemTitle {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--item_left_title_color);
+}
+.linkItemDesc {
+    font-size: 12px;
+    margin-top: 4px;
+    color: var(--item_left_text_color);
+    opacity: 0.75;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.linkItemGo {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.linkItemGo svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: var(--fill);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ---------- Project ---------- */
+.projectCard {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px;
+    border-radius: 20px;
+    background: var(--item_bg_color);
+    transition: transform 0.25s ease;
+}
+.projectCard:active {
+    transform: scale(0.98);
+}
+.projectCardIcon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text_bg_color);
+    transition: transform 0.3s ease;
+}
+.projectCardIcon svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: var(--fill);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.projectCardMeta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.projectCardTitle {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--item_left_title_color);
+}
+.projectCardDesc {
+    font-size: 13px;
+    margin-top: 5px;
+    line-height: 1.6;
+    color: var(--item_left_text_color);
+    opacity: 0.75;
+}
+.projectCardTags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+.projectCardTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    margin: 0 6px 6px 0;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 8px;
+    background: var(--left_tag_item);
+}
+
+footer {
+    position: absolute;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    background: var(--item_bg_color);
+    color: var(--footer_text_color);
+    font-size: 13px;
+    bottom: 0;
+}
+@media (min-width: 801px) {
+
+    .index-logo {
+        display: none;
+    }
+}
+@media (max-width: 800px) {
+    .lyi-left {
+        display: none;
+    }
+    .lyi-right {
+        width: 100%;
+    }
+    .tanChiShe {
+        width: 100%;
+    }
+    .description {
+        font-size: 4vw;
+    }
+    .gradientText {
+        font-size: clamp(42px, 18vw, 70px);
+    }
+    .welcome {
+        font-size: 10vw;
+        margin: 2vw 0;
+    }
+    .iconContainer {
+     margin-top: 4vw;
+}
+    .linkGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .linkItemTitle {
+        font-size: 16px;
+    }
+    .linkItemDesc {
+        font-size: 13px;
+    }
+    .projectCard {
+        gap: 14px;
+        padding: 16px;
+    }
+    .projectCardIcon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+    }
+    .projectCardIcon svg {
+        width: 23px;
+        height: 23px;
+    }
+    .projectCardTitle {
+        font-size: 16px;
+    }
+    .projectCardTags {
+        display: none;
+    }
+    .projectCardGo {
+        display: none;
+    }
+}
+/* Modal has no layout/paint footprint until it is opened. */
+.avatar-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    width: min(80vw, 300px);
+    max-height: 90vh;
+    border-radius: 36px;
+    overflow: hidden;
+    background: #fff;
+    color: #fff;
+}
+.avatar-dialog::backdrop { background: rgba(20, 20, 20, 0.7); }
+.avatar-dialog img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+.dialog-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #191b2acc;
+    font-size: 24px;
+    line-height: 1;
+}
+.onoffswitch {
+    position: relative;
+    width: 38px;
+    height: 20px;
+    border-radius: 50px;
+    background: rgb(110 110 110 / 50%);
+}
+.onoffswitch-switch {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 4px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+html[data-theme="Dark"] .onoffswitch { background: #272727; }
+html[data-theme="Dark"] .onoffswitch-switch { transform: translateX(16px); }
+#vercount_value_site_pv { display: inline-block; min-width: 5ch; text-align: left; }
+
+@media (hover: hover) and (pointer: fine) {
+    .iconItem:hover { transform: translateY(-2px); background: var(--item_hover_color); }
+    .iconItem:hover .iconTip { opacity: 1; transform: translate(-50%, 0); }
+    .switch:hover { background: var(--item_hover_color); }
+    .title:hover {
+        transform: translateY(-5px);
+    }
+    .linkItem:hover {
+        background: var(--item_hover_color);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px -4px #2c2d300c;
+    }
+    .linkItem:hover .linkItemIcon {
+        transform: rotate(-8deg) scale(1.06);
+    }
+    .linkItem:hover .linkItemGo,
+    .projectCard:hover .linkItemGo {
+        opacity: 1;
+        transform: rotate(45deg);
+        background: var(--text_bg_color);
+    }
+    .projectCard:hover {
+        background: var(--item_hover_color);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px -4px #2c2d300c;
+    }
+    .projectCard:hover .projectCardIcon {
+        transform: rotate(-8deg) scale(1.06);
+    }
+}
+.linkItem:active { transform: scale(0.97); }
+.projectCard:active { transform: scale(0.98); }
+@media (max-width: 360px) {
+    .lyi-right { padding-inline: 22px; }
+    .iconContainer { gap: 8px; padding-inline: 0; }
+}
+/* Keep the same content, without movement, for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+    .iconItem:hover, .title:hover, .linkItem:hover, .projectCard:hover,
+    .linkItem:hover .linkItemIcon, .projectCard:hover .projectCardIcon,
+    .linkItem:hover .linkItemGo, .projectCard:hover .linkItemGo,
+    .linkItem:active, .projectCard:active { transform: none; }
+}
+
+</style>
+	<script>
+(() => {
+    'use strict';
+
+    const root = document.documentElement;
+
+    function initLoadingScreen() {
+        const loader = document.getElementById('lyi-loading');
+        if (!loader) return;
+        let disposed = false;
+        let exitTimer;
+        let cleanupTimer;
+        function cleanup() {
+            if (disposed) return;
+            disposed = true;
+            clearTimeout(exitTimer);
+            clearTimeout(cleanupTimer);
+            loader.removeEventListener('transitionend', onTransitionEnd);
+            window.removeEventListener('load', reveal);
+            window.removeEventListener('pagehide', finish);
+            window.removeEventListener('home:ready', cleanup);
+            loader.remove(); // Also destroys the spinner's infinite animation.
+        }
+        function finish() {
+            cleanup();
+            window.dispatchEvent(new Event('home:ready'));
+        }
+        function onTransitionEnd(event) {
+            if (event.target === loader && event.propertyName === 'opacity') finish();
+        }
+        function reveal() {
+            if (disposed) return;
+            exitTimer = setTimeout(() => {
+                loader.classList.add('is-leaving');
+                if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    finish();
+                    return;
+                }
+                loader.addEventListener('transitionend', onTransitionEnd);
+                // transitionend may be canceled/suppressed; cleanup must still run.
+                cleanupTimer = setTimeout(finish, 650);
+            }, 100);
+        }
+        window.addEventListener('home:ready', cleanup, { once: true });
+        window.addEventListener('pagehide', finish, { once: true });
+        if (document.readyState === 'complete') reveal();
+        else window.addEventListener('load', reveal, { once: true });
+    }
+    initLoadingScreen();
+    const afterLoad = callback => {
+        const schedule = () => {
+            if ('requestIdleCallback' in window) requestIdleCallback(callback, { timeout: 2000 });
+            else setTimeout(callback, 150);
+        };
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+    };
+
+    // Sample the original SVG's linear keyframes without hundreds of CSS animations.
+    function sample(frames, percent) {
+        let lo = 0;
+        let hi = frames.length - 1;
+        while (lo + 1 < hi) {
+            const mid = (lo + hi) >> 1;
+            if (frames[mid][0] <= percent) lo = mid;
+            else hi = mid;
+        }
+        const a = frames[lo];
+        const b = frames[hi];
+        const mix = Math.max(0, Math.min(1, (percent - a[0]) / (b[0] - a[0] || 1)));
+        return a.slice(1).map((value, i) => value + (b[i + 1] - value) * mix);
+    }
+
+    function roundedRect(context, x, y, width, height, radius) {
+        context.beginPath();
+        if (context.roundRect) context.roundRect(x, y, width, height, radius);
+        else context.rect(x, y, width, height);
+        context.fill();
+    }
+
+    function createRenderer(canvas, data) {
+        const context = canvas.getContext('2d');
+        const grid = document.createElement('canvas');
+        const gridContext = grid.getContext('2d');
+        if (!context || !gridContext) return null;
+        const food = data.cells.map((cell, index) => [cell[1], index])
+            .filter(([time]) => time <= 100).sort((a, b) => a[0] - b[0]);
+        let scale = 1;
+        let previous = -1;
+        let nextFood = 0;
+
+        function drawCell(index, eaten) {
+            const x = Math.floor(index / 7) * 16 + 2;
+            const y = (index % 7) * 16 + 2;
+            gridContext.clearRect(x - 1, y - 1, 14, 14);
+            gridContext.fillStyle = data.colors[eaten ? 0 : data.cells[index][0]];
+            roundedRect(gridContext, x, y, 12, 12, 2);
+            gridContext.strokeStyle = data.border;
+            gridContext.lineWidth = 1;
+            gridContext.stroke();
+        }
+
+        function resetGrid(percent) {
+            gridContext.setTransform(1, 0, 0, 1, 0, 0);
+            gridContext.clearRect(0, 0, grid.width, grid.height);
+            gridContext.setTransform(scale, 0, 0, scale, 16 * scale, 32 * scale);
+            data.cells.forEach((cell, index) => drawCell(index, cell[1] <= percent));
+            nextFood = food.findIndex(([time]) => time > percent);
+            if (nextFood < 0) nextFood = food.length;
+        }
+
+        function draw(percent) {
+            if (percent < previous) resetGrid(percent);
+            while (nextFood < food.length && food[nextFood][0] <= percent) {
+                drawCell(food[nextFood][1], true);
+                nextFood++;
+            }
+            previous = percent;
+            // The 367/371-cell grid is rasterized once, then only eaten cells change.
+            context.setTransform(1, 0, 0, 1, 0, 0);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(grid, 0, 0);
+            context.setTransform(scale, 0, 0, scale, 16 * scale, 32 * scale);
+            for (const bar of data.bars) {
+                const [x, y, width, height] = bar.rect;
+                context.fillStyle = data.colors[bar.color];
+                context.fillRect(x, y, width * sample(bar.frames, percent)[0], height);
+            }
+            context.fillStyle = data.snakeColor;
+            for (const segment of data.segments) {
+                const [dx, dy] = sample(segment.frames, percent);
+                const [x, y, width, height, radius] = segment.rect;
+                roundedRect(context, x + dx, y + dy, width, height, radius);
+            }
+        }
+
+        return {
+            draw,
+            resize(width, percent) {
+                // Cap backing-store density; this is a small decorative animation.
+                const density = Math.min(window.devicePixelRatio || 1, 2);
+                const pixels = Math.max(1, Math.round(width * density));
+                if (canvas.width === pixels && previous >= 0) return;
+                canvas.width = grid.width = pixels;
+                canvas.height = grid.height = Math.max(1, Math.round(pixels * 192 / 880));
+                scale = pixels / 880;
+                resetGrid(percent);
+                draw(percent);
+            }
+        };
+    }
+
+    function createSnakePlayer() {
+        const stage = document.querySelector('.snake-stage');
+        const fallback = document.getElementById('tanChiShe');
+        const canvas = document.getElementById('snake-canvas');
+        const button = document.getElementById('snake-toggle');
+        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+        const connection = navigator.connection;
+        const capable = 'IntersectionObserver' in window && !!canvas.getContext('2d');
+        const cache = new Map();
+        let theme = 'Light';
+        let version = 0;
+        let pending = false;
+        let ready = false;
+        let visible = false;
+        let enabled = capable && !reducedMotion.matches && !connection?.saveData;
+        let renderer = null;
+        let duration = 1;
+        let elapsed = 0;
+        let startedAt = 0;
+        let playing = false;
+        let frameId = 0;
+        let modalOpen = false;
+        let stageWidth = stage.getBoundingClientRect().width;
+        button.hidden = !capable;
+
+        const percentAt = now => ((elapsed + (playing ? now - startedAt : 0)) % duration) / duration * 100;
+        function updateButton() {
+            button.setAttribute('aria-pressed', String(enabled));
+        }
+        function stop() {
+            if (playing) elapsed += performance.now() - startedAt;
+            playing = false;
+            cancelAnimationFrame(frameId);
+            frameId = 0;
+            stage.dataset.playerState = renderer ? 'paused' : 'static';
+        }
+        function frame(now) {
+            if (!playing) return;
+            // Draw on every browser animation frame, with no fixed FPS cap.
+            // Wall-clock interpolation keeps speed independent of refresh rate.
+            renderer.draw(percentAt(now));
+            frameId = requestAnimationFrame(frame);
+        }
+        function start() {
+            if (playing || !renderer) return;
+            startedAt = performance.now();
+            playing = true;
+            stage.dataset.playerState = 'playing';
+            frameId = requestAnimationFrame(frame);
+        }
+        const shouldPlay = () => enabled && visible && !document.hidden && !modalOpen;
+
+        async function reconcile() {
+            updateButton();
+            if (!ready || !shouldPlay()) { stop(); return; }
+            if (renderer) { start(); return; }
+            if (pending) return;
+            pending = true;
+            const currentVersion = version;
+            const key = theme;
+            try {
+                if (!cache.has(key)) {
+                    const request = fetch(`./static/data/snake-${key}.json`)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Snake data unavailable');
+                            return response.json();
+                        }).catch(error => { cache.delete(key); throw error; });
+                    cache.set(key, request);
+                }
+                const data = await cache.get(key);
+                // A slow Light response must never overwrite a newer Dark selection.
+                if (currentVersion !== version) return;
+                renderer = createRenderer(canvas, data);
+                if (!renderer) { button.hidden = true; return; }
+                duration = data.duration;
+                renderer.resize(stageWidth, 0);
+                canvas.hidden = false;
+                fallback.style.visibility = 'hidden';
+                stage.dataset.playerState = 'paused';
+                if (shouldPlay()) start();
+            } catch {
+                // The static image still works if fetch/Canvas is blocked (e.g. file://).
+                if (currentVersion === version) stage.dataset.playerState = 'static';
+            } finally {
+                if (currentVersion === version) pending = false;
+            }
+        }
+
+        if (capable) {
+            const observer = new IntersectionObserver(([entry]) => {
+                visible = entry.isIntersecting && entry.intersectionRatio > 0;
+                reconcile();
+            });
+            observer.observe(stage);
+            if ('ResizeObserver' in window) {
+                new ResizeObserver(([entry]) => {
+                    stageWidth = entry.contentRect.width;
+                    if (renderer) renderer.resize(stageWidth, percentAt(performance.now()));
+                }).observe(stage);
+            } else {
+                window.addEventListener('resize', () => {
+                    stageWidth = stage.getBoundingClientRect().width;
+                    if (renderer) renderer.resize(stageWidth, percentAt(performance.now()));
+                }, { passive: true });
+            }
+        }
+        document.addEventListener('visibilitychange', reconcile);
+        // pagehide/pageshow also cover back-forward cache restores.
+        window.addEventListener('pagehide', stop);
+        window.addEventListener('pageshow', reconcile);
+        reducedMotion.addEventListener('change', () => {
+            enabled = capable && !reducedMotion.matches && !connection?.saveData;
+            reconcile();
+        });
+        button.addEventListener('click', () => {
+            enabled = !enabled;
+            ready = true; // Explicit intent need not wait for the idle enhancement.
+            reconcile();
+        });
+        afterLoad(() => { ready = true; reconcile(); });
+
+        return {
+            setTheme(nextTheme) {
+                stop();
+                version++;
+                pending = false;
+                theme = nextTheme;
+                renderer = null;
+                elapsed = 0;
+                canvas.hidden = true;
+                fallback.style.visibility = '';
+                fallback.src = `./static/svg/snake-${theme}-static.svg`;
+                stage.dataset.playerState = 'static';
+                reconcile();
+            },
+            setModalOpen(open) { modalOpen = open; reconcile(); }
+        };
+    }
+
+    const snake = createSnakePlayer();
+    const themeButton = document.getElementById('theme-toggle');
+    const currentTheme = () => root.dataset.theme === 'Dark' ? 'Dark' : 'Light';
+    function syncTheme() {
+        const theme = currentTheme();
+        themeButton.setAttribute('aria-checked', String(theme === 'Dark'));
+        snake.setTheme(theme);
+    }
+    themeButton.addEventListener('click', () => {
+        const theme = currentTheme() === 'Dark' ? 'Light' : 'Dark';
+        root.dataset.theme = theme;
+        try {
+            document.cookie = `themeState=${theme}; Max-Age=31536000; Path=/; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
+        } catch { /* The theme still works when storage is unavailable. */ }
+        syncTheme();
+    });
+    syncTheme();
+
+    const dialog = document.getElementById('avatar-dialog');
+    const avatarButton = document.getElementById('avatar-button');
+    const avatar = document.getElementById('avatar-preview');
+    function closeDialog() {
+        if (typeof dialog.close === 'function') dialog.close();
+        else { dialog.removeAttribute('open'); snake.setModalOpen(false); avatarButton.focus(); }
+    }
+    avatarButton.addEventListener('click', () => {
+        if (!avatar.getAttribute('src')) avatar.src = './static/img/logo.webp';
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+        snake.setModalOpen(true);
+        document.getElementById('dialog-close').focus();
+    });
+    document.getElementById('dialog-close').addEventListener('click', closeDialog);
+    dialog.addEventListener('click', event => {
+        if (event.target === dialog) closeDialog();
+    });
+    dialog.addEventListener('close', () => { snake.setModalOpen(false); avatarButton.focus(); });
+
+    // Analytics is deliberately outside the critical rendering/load path.
+    // A blocked provider leaves the '-' placeholder and cannot hide the page.
+    afterLoad(() => {
+        if (!/^https?:$/.test(location.protocol)) return;
+        const counter = document.createElement('script');
+        counter.src = 'https://events.vercount.one/js';
+        counter.async = true;
+        counter.dataset.cfasync = 'false';
+        document.head.append(counter);
+    });
+})();
+
+</script>
 	<noscript><style>#lyi-loading, #theme-toggle, #avatar-button, #tanChiShe { display: none; }</style></noscript>
 </head>
 
