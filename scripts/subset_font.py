@@ -17,13 +17,27 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 FONT_URL = "https://raw.githubusercontent.com/lingyicute/Nebulove/main/Nebulove.ttf"
-CSS_PATH = ROOT / "static/css/style.css"
+HTML_PATH = ROOT / "index.html"
 EMOJI_PATH = ROOT / "static/fonts/Segoe UI Emoji.ttf"
 CACHE_PATH = ROOT / "scripts/.font-subset-cache.json"
 OUTPUTS = {
     "b": ROOT / "static/fonts/nebulove-subset.woff2",
     "emoji": ROOT / "static/fonts/emoji-subset.woff2",
 }
+FONT_SRC = "./static/fonts/"
+STYLE_BLOCK = re.compile(r"<style>.*?</style>", re.S)
+
+
+def find_style(html):
+    """Locate the main stylesheet: the <style> block that declares the fonts.
+
+    index.html also carries a small <noscript><style> block; matching on
+    @font-face keeps this unambiguous if more inline styles are added.
+    """
+    for match in STYLE_BLOCK.finditer(html):
+        if "@font-face" in match.group(0):
+            return match
+    raise ValueError("No inline <style> block with @font-face found in index.html")
 
 
 class VisibleText(HTMLParser):
@@ -49,12 +63,12 @@ class VisibleText(HTMLParser):
             self.chars.update(text)
 
 
-def collect_chars():
+def collect_chars(css):
     parser = VisibleText()
-    parser.feed((ROOT / "index.html").read_text(encoding="utf-8"))
+    parser.feed(HTML_PATH.read_text(encoding="utf-8"))
     chars = parser.chars
     # Avoid subsetting Chinese code comments, SVG paths or base64 blobs as visible text.
-    css = re.sub(r"/\*.*?\*/", "", CSS_PATH.read_text(encoding="utf-8"), flags=re.S)
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     for content in re.findall(r'content:\s*[\'"]([^\'"]*)[\'"]', css):
         chars.update(content)
     chars.update(chr(c) for c in range(32, 127))  # Includes dynamic visitor counts / English UI.
@@ -84,7 +98,7 @@ def replace_face(css, family, filename):
         if re.search(r'font-family:\s*"' + re.escape(family) + r'"\s*;', match[0]):
             face = f'''@font-face {{
     font-family: "{family}";
-    src: url("../fonts/{filename}") format("woff2");
+    src: url("{FONT_SRC}{filename}") format("woff2");
     font-display: swap;
 }}'''
             return css[:match.start()] + face + css[match.end():]
@@ -94,14 +108,16 @@ def replace_face(css, family, filename):
 def main():
     from fontTools.ttLib import TTFont
 
-    chars = collect_chars()
+    html = HTML_PATH.read_text(encoding="utf-8")
+    style = find_style(html)
+    css = style.group(0)
+    chars = collect_chars(css)
     local_font = os.environ.get("NEBULOVE_FONT")
     source_key = digest(Path(local_font)) if local_font else FONT_URL
     fingerprint = hashlib.sha256((
         source_key + digest(EMOJI_PATH) + digest(Path(__file__))
         + json.dumps(sorted(ord(c) for c in chars))
     ).encode()).hexdigest()
-    css = CSS_PATH.read_text(encoding="utf-8")
     if "--force" not in sys.argv and CACHE_PATH.exists():
         cached = json.loads(CACHE_PATH.read_text(encoding="utf-8"))
         if cached.get("fingerprint") == fingerprint and all(
@@ -131,7 +147,11 @@ def main():
     for family, path in OUTPUTS.items():
         path.write_bytes(fonts[family])
         print(f"{path.name}: {len(fonts[family]):,} bytes")
-    CSS_PATH.write_text(new_css, encoding="utf-8")
+    if new_css != css:
+        HTML_PATH.write_text(
+            html[:style.start()] + new_css + html[style.end():], encoding="utf-8"
+        )
+        print("Rewrote @font-face sources in index.html")
     CACHE_PATH.write_text(json.dumps({
         "fingerprint": fingerprint,
         "source": FONT_URL,
